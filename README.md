@@ -2,6 +2,13 @@
 
 Includes **authentication** (register/login/logout via **httpOnly cookie JWT**) plus an **admin panel** (list users + change roles).
 
+Now elevated into an **Event / Appointment Booking System**:
+
+- Users can **browse upcoming events** and **book** a spot.
+- Bookings are stored in MongoDB with statuses: **pending**, **approved**, **cancelled**.
+- Events can be set to **instant approval** or **require admin approval**.
+- Admins can **create/update events** and **approve/cancel bookings**.
+
 ### Tech stack
 
 - **Client**: React (Vite) + React Router + Axios
@@ -60,14 +67,28 @@ npm run dev
 
 - Create an account or seed an admin via the script above.
 - Admins can access the UI at `/admin` to manage user roles.
+- Admins can also manage **events** and **bookings** in `/admin`.
 
 ### API endpoints
 
+- **Events (public)**
+  - `GET /api/events` (upcoming active events)
+  - `GET /api/events/:id`
 - **Auth**
   - `POST /api/auth/register`
   - `POST /api/auth/login`
   - `POST /api/auth/logout`
   - `GET /api/auth/me`
+- **Bookings (authenticated)**
+  - `GET /api/bookings/me`
+  - `POST /api/bookings` (book an event)
+  - `POST /api/bookings/:id/cancel`
 - **Admin (admin-only)**
   - `GET /api/admin/users`
   - `PATCH /api/admin/users/:id/role`
+  - `GET /api/admin/events`
+  - `POST /api/admin/events`
+  - `GET /api/admin/events/:id`
+  - `PATCH /api/admin/events/:id`
+  - `GET /api/admin/bookings`
+  - `PATCH /api/admin/bookings/:id/status`

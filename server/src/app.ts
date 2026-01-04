@@ -5,6 +5,8 @@ import { env } from "./utils/env.js";
 import authRoutes from "./routes/auth.js";
 import adminRoutes from "./routes/admin.js";
 import healthRoutes from "./routes/health.js";
+import eventsRoutes from "./routes/events.js";
+import bookingsRoutes from "./routes/bookings.js";
 
 export function createApp() {
   const app = express();
@@ -19,7 +21,9 @@ export function createApp() {
   app.use(cookieParser());
 
   app.use("/api", healthRoutes);
+  app.use("/api/events", eventsRoutes);
   app.use("/api/auth", authRoutes);
+  app.use("/api/bookings", bookingsRoutes);
   app.use("/api/admin", adminRoutes);
 
   app.use((_req, res) => res.status(404).json({ error: "Not found" }));
