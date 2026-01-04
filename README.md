@@ -6,25 +6,26 @@ Includes **authentication** (register/login/logout via **httpOnly cookie JWT**) 
 
 - **Client**: React (Vite) + React Router + Axios
 - **Server**: Express + Mongoose + JWT + bcrypt
-- **DB**: MongoDB (Docker Compose)
+- **DB**: MongoDB (local `mongod`)
 
 ### Project structure
 
 - `client/`: React app
 - `server/`: Express API
-- `docker-compose.yml`: MongoDB
 
 ### Prerequisites
 
 - Node.js 18+ (or newer)
-- Docker (for MongoDB)
+- MongoDB running locally (`mongod`)
 
 ### Setup
 
-1) Start MongoDB:
+1) Start MongoDB locally:
 
 ```bash
-docker compose up -d
+# If you installed MongoDB as a service, it may already be running.
+# Otherwise start it (command varies by OS/package).
+mongod
 ```
 
 2) Configure env files:
